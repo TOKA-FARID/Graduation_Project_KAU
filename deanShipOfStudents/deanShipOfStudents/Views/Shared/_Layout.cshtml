@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/Rtl.css" />
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-light ">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><img src="~/Images/logo.png" width="75" height="75"/></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+     
+            @Html.Partial("_LoginPartial")
+        </div>
+    </nav>
+    @* start of content *@
+    <div class="container-fluid body-content">
+        <div class="row">
+            @if (User.Identity.IsAuthenticated )
+            {
+                <div class="col-md-2">
+                    @Html.Partial("_VerticalMenu")
+                </div>
+                <div class="col-md-10">
+                    @RenderBody()
+                </div>
+            }
+            else
+            {
+                <div class="col-md-12">
+                    @RenderBody()
+                </div>
+            }
+
+        </div>
+
+        <hr />
+    </div>
+
+    <script src="~/Scripts/jquery-3.6.0.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

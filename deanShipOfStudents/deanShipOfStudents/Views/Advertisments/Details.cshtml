@@ -1,0 +1,42 @@
+﻿@model deanShipOfStudents.Models.Advertisment
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Advertisment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.title)
+        </dt>
+
+        <dd class="form-control">
+            @Html.DisplayFor(model => model.title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.body)
+        </dt>
+
+        <dd class="form-control">
+            @Html.DisplayFor(model => model.body)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Attatchment)
+        </dt>
+
+        <dd class="form-control">
+            @Html.DisplayFor(model => model.Attatchment)
+        </dd>
+
+    </dl>
+</div>
+<p class="text-center ">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }, new { @class = "btn btn-default" }) |
+    @Html.ActionLink("Back to List", "Index",null, new { @class = "btn btn-default" })
+</p>

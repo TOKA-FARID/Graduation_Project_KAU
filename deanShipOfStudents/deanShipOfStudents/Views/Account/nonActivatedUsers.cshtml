@@ -1,0 +1,76 @@
+﻿@model IEnumerable<deanShipOfStudents.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "nonActivatedUsers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Activate Users</h2>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.firstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.middleName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.lastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UniverstyId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.userType)
+        </th>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        
+        <th>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </th>
+      
+        <th>
+            @Html.DisplayNameFor(model => model.UserName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.firstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.middleName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.lastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UniverstyId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.userType)
+        </td>
+      
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhoneNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserName)
+        </td>
+       <td>
+           @Html.ActionLink("Accept", "ActivateUser", "Account", new { userId = item.Id }, new { @class = "btn btn-primary" })
+
+
+        </td>
+    </tr>
+}
+
+</table>

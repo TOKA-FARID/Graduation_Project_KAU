@@ -1,0 +1,56 @@
+﻿@model IEnumerable<deanShipOfStudents.Models.Advertisment>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Advertisments</h2>
+
+@if (ViewBag.error != null)
+{
+    <p class="text-center text-danger ">@ViewBag.error</p>
+}
+<p>
+    @Html.ActionLink("Create New", "Create",null , new {@class = "btn btn-light" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.body)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Attatchment)
+        </th>
+        <th>#</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.body)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Attatchment)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-light" }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-light" }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-light" }) |
+            @using (Html.BeginForm("sendToTrainee","Advertisments",FormMethod.Post))
+            {
+                <input name="id" type="hidden" value="@item.Id"/>
+                <div class="form-actions no-color">
+                    <input type="submit" value="send mail" class="btn btn-light" /> 
+                </div>
+            }
+        </td>
+    </tr>
+}
+
+</table>

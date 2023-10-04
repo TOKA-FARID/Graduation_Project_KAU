@@ -1,0 +1,40 @@
+﻿
+<nav class="navigation">
+    <ul class="mainmenu">
+        @{
+            deanShipOfStudents.Models.ApplicationDbContext db = new deanShipOfStudents.Models.ApplicationDbContext();
+            var user = db.Users.Where(u => u.UserName == User.Identity.Name).ToList().FirstOrDefault();
+
+            if (User.IsInRole("Admin"))
+            {
+                <li><a href="~/Home/index">Home </a></li>
+                <li><a href="~/Account/nonActivatedUsers">Activate Users </a></li>
+                <li><a href="~/centers/index">Centers </a></li>
+                <li><a href="~/Activities/index">Activities </a></li>
+                <li><a href="~/Advertisments/index">Advertisments </a></li>
+                <li><a href="~/News/index">News </a></li>
+
+            }
+            else if (User.IsInRole("SuperVisor"))
+            {
+                <li><a href="~/Activities/index">Activities </a></li>
+
+            }
+            else if (User.IsInRole("trainer"))
+            {
+                <li><a href="~/Activities/GetTrainerActivites?userId=@user.Id">My Activites </a></li>
+                @*<li><a href="~/ServiceMatrials/index?userId=@user.Id">services Matrial </a></li>
+                <li><a href="~/Trainer/GetTrainerClosedServices">My Activity </a></li>*@
+            }
+            else if (User.IsInRole("trainee"))
+            {
+                <li><a href="~/Activities/getTraineeAvilableActivities?userId=@user.Id">Avilable Activites </a></li>
+                <li><a href="~/Activities/getTraineeActivities?userId=@user.Id">My Activites </a></li>
+
+            }
+
+        }
+
+    </ul>
+</nav>
+

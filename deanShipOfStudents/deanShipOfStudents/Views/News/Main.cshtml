@@ -1,0 +1,65 @@
+﻿@model IEnumerable<deanShipOfStudents.Models.News>
+
+@{
+    ViewBag.Title = "Main";
+
+    int x = 0;
+
+}
+<div class="row  p-4 text-center shadow shadow-lg" style="background-color: #e8e8e8!important;">
+    <div class="col-md-3"></div>
+    <div class="col-md-6 text-center">
+        <div id="carouselExampleControls" class="carousel carousel-dark slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+
+                @foreach (var item in Model.Where(m => m.type == deanShipOfStudents.Models.News.Newstype.slider).OrderByDescending(a => a.Id))
+                {
+                    if (x == 0)
+                    {
+                        <div class="carousel-item active">
+                            <img src="~/NewsImages/@item.FileName" class="d-block" height="300" width="600" alt="@item.FileName">
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="carousel-item ">
+                            <img src="~/NewsImages/@item.FileName" class="d-block " height="300" width="600" alt="@item.FileName">
+                        </div>
+                    }
+                    x++;
+                }
+
+            </div>
+            <button class="carousel-control-prev text-black" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next text-black" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+
+    </div>
+
+    <div class="col-md-3"></div>
+
+</div>
+<div class="container-fluid p-3" style="background-color: #77bb6f9c;">
+    <div class="row text-center w-100">
+        @foreach (var item in Model.Where(m => m.type == deanShipOfStudents.Models.News.Newstype.reguler).OrderByDescending(a => a.Id))
+        {
+            <div class="card col-md-3  m-1" style="width:18rem;">
+                <img src="~/NewsImages/@item.FileName" class="d-block " alt="@item.FileName">
+
+            </div>
+        }
+    </div>
+
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/scripts/myJs.js")
+}

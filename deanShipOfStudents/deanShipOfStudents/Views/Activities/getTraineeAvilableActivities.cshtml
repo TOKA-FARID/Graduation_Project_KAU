@@ -1,0 +1,42 @@
+﻿@model IEnumerable<deanShipOfStudents.Models.Activity>
+
+@{
+    ViewBag.Title = "getTraineeAvilableActivities";
+}
+
+<h2>Avilable Activities</h2>
+<hr/>
+
+<div class="row">
+    @if (Model != null && Model.Count() > 0)
+    {
+        foreach (var item in Model)
+        {
+            <div class="card col-md-4 m-1 pt-2 pb-1 ps-1 pe-1">
+                @using (Html.BeginForm("enrollTraineeActiviy", "Activities", FormMethod.Post))
+                {
+                    <div class="card-body">
+                        <h5 class="card-title text-center">@item.ActivityName</h5><hr />
+                        <p class="card-text">location : @item.Location</p>
+                        <div class="text-center">
+                            <input type="hidden" class="btn btn-success" name="ActivityId" value="@item.ActivityId" />
+                            <input type="submit" class="btn btn-success" value="enroll now" />
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+    }
+    else
+    {
+        <p class="text-center">No data!</p>
+    }
+
+</div>
+@{ 
+    if (ViewBag.error != null)
+    {
+        string errorMsg = ViewBag.error;
+        <p class="text-center text-danger">@errorMsg</p>
+    }
+}

@@ -1,0 +1,65 @@
+﻿@model IEnumerable<deanShipOfStudents.Models.Attatchment>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@if (ViewBag.activityId != null && ViewBag.type != null)
+{
+    <p>
+
+        @Html.ActionLink("Add To single trainee", "Create", new { activityId = ViewBag.activityId, type = ViewBag.type }, new { @class = "btn btn-light" }) |
+        @Html.ActionLink("Upload from file", "UploadExcel", new { activityId = ViewBag.activityId, type = ViewBag.type }, new { @class = "btn btn-light" })
+    </p>
+}
+else
+{
+    <p>
+
+        @Html.ActionLink("Add To single trainee", "Create", null, new { @class = "btn btn-light" }) |
+    </p>
+
+}
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.activity.ActivityName)
+        </th>
+        <th>
+            trainee name
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.degree)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.type)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.activity.ActivityName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.traine.firstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.degree)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.type)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-light" }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-light" }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-light" })
+            </td>
+        </tr>
+    }
+
+</table>

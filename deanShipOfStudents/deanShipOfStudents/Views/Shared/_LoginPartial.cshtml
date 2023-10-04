@@ -1,0 +1,38 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        deanShipOfStudents.Models.ApplicationDbContext db = new deanShipOfStudents.Models.ApplicationDbContext();
+        var user = db.Users.Where(u => u.UserName == User.Identity.Name).ToList().FirstOrDefault();
+        @Html.AntiForgeryToken()
+
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            @if (user != null)
+            {
+                <div>
+                    @Html.ActionLink("Hello " + user.firstName + " " + user.lastName + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "btn btn-light m-1" })
+
+                </div>
+            }
+            else
+            {
+        <div>
+            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "btn btn-light m-1" })
+
+        </div>
+
+            }
+        </li>
+        <li><a class="btn btn-light m-1" href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+    </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" , @class = "btn btn-light m-2" })</li>
+        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "btn btn-light m-2" })</li>
+    </ul>
+}

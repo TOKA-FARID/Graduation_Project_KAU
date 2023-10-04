@@ -1,0 +1,109 @@
+﻿@model deanShipOfStudents.Models.Activity
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+<div class="row">
+    <div class="col-md-6">
+        <h4>Activity</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.ActivityName)
+            </dt>
+
+            <dd class="form-control">
+                @Html.DisplayFor(model => model.ActivityName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Location)
+            </dt>
+
+            <dd class="form-control">
+                @Html.DisplayFor(model => model.Location)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.type)
+            </dt>
+
+            <dd class="form-control">
+                @Html.DisplayFor(model => model.type)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.IsClosed)
+            </dt>
+
+            <dd class="form-control">
+                @Html.DisplayFor(model => model.IsClosed)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.IsAssigned)
+            </dt>
+
+            <dd class="form-control">
+                @Html.DisplayFor(model => model.IsAssigned)
+            </dd>
+
+        </dl>
+        <p class="text-center">
+            @Html.ActionLink("Edit", "Edit", new { id = Model.ActivityId },new { @class = "btn btn-default" }) |
+            @Html.ActionLink("Back to List", "Index",null, new { @class = "btn btn-default" })
+        </p>
+
+    </div>
+    <div class="col-md-6">
+        @{
+            <h4>Meetings for @Model.ActivityName</h4>
+            <p>
+                @Html.ActionLink("Create New", "Create", "Meetings", new { activityId = Model.ActivityId }, new { @class = "btn btn-default" })
+                </p>
+                <hr />
+                if (Model.Meetings != null)
+                {
+                foreach (var item in Model.Meetings)
+                {
+
+                <table class="table">
+                    <tr>
+                        <th>
+                            Date
+                        </th>
+                        <th>
+                            Time
+                        </th>
+
+                        <th></th>
+                    </tr>
+
+
+                    <tr>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DateOfActivity)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TimeOfActivity)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", "Meetings", new { id = item.Id }, new { @class = "btn btn-default" }) |
+                            @Html.ActionLink("Details", "Details", "Meetings", new { id = item.Id }, new { @class = "btn btn-default" }) |
+                            @Html.ActionLink("Delete", "Delete", "Meetings", new { id = item.Id }, new { @class = "btn btn-default" })
+                        </td>
+                    </tr>
+
+
+                </table>
+
+                }
+                }
+
+                }
+        </div>
+
+</div>

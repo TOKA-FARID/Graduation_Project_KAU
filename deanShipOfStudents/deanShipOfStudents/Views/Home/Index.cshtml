@@ -1,0 +1,131 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    deanShipOfStudents.Models.ApplicationDbContext db = new deanShipOfStudents.Models.ApplicationDbContext();
+    var user = db.Users.Where(u => u.UserName == User.Identity.Name).ToList().FirstOrDefault();
+    var trainers = db.Users.Where(u => u.userType == deanShipOfStudents.Models.ApplicationUser.UserType.trainer && u.isActive).ToList();
+    var SuperVisors = db.Users.Where(u => u.userType == deanShipOfStudents.Models.ApplicationUser.UserType.superVisor && u.isActive).ToList();
+    var trainees = db.Users.Where(u => u.userType == deanShipOfStudents.Models.ApplicationUser.UserType.trainee && u.isActive).ToList();
+    var nonActivatidUsers = db.Users.Where(u => u.isActive == false).ToList();
+    var centers = db.Centers.ToList();
+    var Activites = db.Activities.ToList();
+}
+
+@if (User.IsInRole("Admin"))
+{
+
+    <div class="row">
+        <div class="card col-md-2 m-1 pt-2 pb-1 ps-1 pe-1">
+            <div class="card-body">
+                <h5 class="card-title text-center">SuperVisors</h5><hr />
+                <div class="text-center">
+
+                    @SuperVisors.Count()
+
+                </div>
+            </div>
+        </div>
+        <div class="card col-md-2 m-1 pt-2 pb-1 ps-1 pe-1">
+            <div class="card-body">
+                <h5 class="card-title text-center">Trainers</h5><hr />
+                <div class="text-center">
+
+                    @trainers.Count()
+
+                </div>
+            </div>
+        </div>
+        <div class="card col-md-2 m-1 pt-2 pb-1 ps-1 pe-1">
+            <div class="card-body">
+                <h5 class="card-title text-center">Trainees</h5><hr />
+                <div class="text-center">
+
+                    @trainees.Count()
+
+                </div>
+            </div>
+        </div>
+        <div class="card col-md-3 m-1 pt-2 pb-1 ps-1 pe-1">
+            <div class="card-body">
+                <h5 class="card-title text-center">UnActiviated Users</h5><hr />
+                <div class="text-center">
+
+                    @nonActivatidUsers.Count()
+
+                </div>
+            </div>
+        </div>
+        <div class="card col-md-2 m-1 pt-2 pb-1 ps-1 pe-1">
+            <div class="card-body">
+                <h5 class="card-title text-center">Centers</h5><hr />
+                <div class="text-center">
+
+                    @centers.Count()
+
+                </div>
+            </div>
+        </div>
+        <div class="card col-md-2 m-1 pt-2 pb-1 ps-1 pe-1">
+            <div class="card-body">
+                <h5 class="card-title text-center">Activites</h5><hr />
+                <div class="text-center">
+
+                    @Activites.Count()
+
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else if (User.IsInRole("SuperVisor"))
+{
+
+    var myCenters = db.Centers.Where(c => c.SupervisorId == user.Id).ToList();
+    var activites = from c in myCenters join a in db.CenterActivities on c.CenterId equals a.CenterId select new { activityId = a.ActivityId };
+    <div class="row">
+        <div class="card col-md-5 m-1 pt-2 pb-1 ps-1 pe-1">
+            <div class="card-body">
+                <h5 class="card-title text-center">Centers</h5><hr />
+                <div class="text-center">
+
+                    @myCenters.Count()
+
+                </div>
+            </div>
+        </div>
+        <div class="card col-md-5 m-1 pt-2 pb-1 ps-1 pe-1">
+            <div class="card-body">
+                <h5 class="card-title text-center">Activites</h5><hr />
+                <div class="text-center">
+
+                    @activites.ToList().Count()
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+else if (User.IsInRole("trainer"))
+{
+    var trainerActivites = db.TrainerActivities.Where(t => t.TrainerId == user.Id).ToList();
+    <div class="row">
+        <div class="card col-md-5 m-1 pt-2 pb-1 ps-1 pe-1">
+            <div class="card-body">
+                <h5 class="card-title text-center">My Activites</h5><hr />
+                <div class="text-center">
+
+                    @trainerActivites.Count()
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+}
+else if (User.IsInRole("trainee"))
+{
+    <div class="row">
+        <h3 class="text-center"> Welcome to Trainees Page</h3>
+
+    </div>
+}

@@ -1,0 +1,44 @@
+﻿@model IEnumerable<deanShipOfStudents.Models.News>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>News</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create",null , new { @class = "btn btn-default" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FileName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isPublished)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        <img class="img-thumbnail" width="100" height="100" src="~/NewsImages/@item.FileName" />
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.type)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.isPublished)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-default" }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-default" })
+    </td>
+</tr>
+}
+
+</table>

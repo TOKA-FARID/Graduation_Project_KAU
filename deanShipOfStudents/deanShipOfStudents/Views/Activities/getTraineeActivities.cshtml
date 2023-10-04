@@ -1,0 +1,43 @@
+﻿@model IEnumerable<deanShipOfStudents.Models.Activity>
+
+@{
+    ViewBag.Title = "getTraineeActivities";
+}
+<h2>My Activites</h2>
+<hr/>
+
+<div class="row">
+
+    @if (Model.Count() > 0 )
+    {
+        foreach (var item in Model)
+        {
+            <div class="card col-md-4 m-1 pt-2 pb-1 ps-1 pe-1">
+                <div class="card-body">
+                    <h5 class="card-title text-center">@item.ActivityName</h5><hr />
+                    <p class="card-text">location : @item.Location</p>
+                    <div class="text-center">
+                        @if (item.IsClosed)
+                        {
+                            <a href="~/Certificate/getTraineeCertificate?activityId=@item.ActivityId" class="btn btn-light">Certificate </a> 
+
+                        }
+                        else
+                        {
+                            <a href="~/Activities/cancelTraineeActiviy?activityId=@item.ActivityId" class="btn btn-light">cancel </a> <span>|</span>
+                            <a href="~/meetings/index?activityId=@item.ActivityId" class="btn btn-light">Meetings</a> <span>|</span>
+                            <a href="~/Matrials/index?activityId=@item.ActivityId" class="btn btn-light">Matrials</a>
+                        }
+
+
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <p class="text-center text-danger"> you donn't have any activity</p>
+    }
+
+</div>

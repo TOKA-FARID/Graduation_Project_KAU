@@ -1,0 +1,91 @@
+﻿@model IEnumerable<deanShipOfStudents.Models.Matrial>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Matrials</h2>
+@if (!User.IsInRole("trainee"))
+{
+    if (ViewBag.activityId != null)
+    {
+        <p>
+            @Html.ActionLink("Create New", "Create", new { activityId = ViewBag.activityId },new { @class = "btn btn-light" })
+        </p>
+    }
+    else
+    {
+        <p>
+            @Html.ActionLink("Create New", "Create",null, new { @class = "btn btn-light" })
+        </p>
+
+    }
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.activity.ActivityName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.matrialName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ext)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.filePath)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.activity.ActivityName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.matrialName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ext)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.filePath)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-light" }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-light" }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-light" })
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+else
+{
+   if (Model.Count() > 0)
+    {
+<div class="row">
+    @foreach (var item in Model)
+    {
+    <div class="card col-md-4 m-1 pt-2 pb-1 ps-1 pe-1">
+        <div class="card-body">
+            <h5 class="card-title text-center">@item.matrialName</h5><hr />
+
+            <div class="text-center">
+                <a href="~/UploadedFiles/@item.filePath" class="btn btn-light">Download @item.filePath </a>
+
+
+
+            </div>
+        </div>
+    </div>
+    }
+</div>
+    }
+    else
+    {
+        <p class="text-center text-danger"> there no any matrial in this activity</p>
+    }
+}

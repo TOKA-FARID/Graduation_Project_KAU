@@ -1,0 +1,108 @@
+﻿@model deanShipOfStudents.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+}
+
+<div class="row">
+    
+        <div class="col-md-2"></div>
+        
+            <div class="col-md-8 rounded rounded-2 shadow shadow-lg p-4">
+
+                @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <h4>Create a new account.</h4>
+                    <hr />
+                    @Html.ValidationSummary("", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.UniverstyId, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(m => m.UniverstyId, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(m => m.UniverstyId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.firstName, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(m => m.firstName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(m => m.firstName, "", new { @class = "text-danger" })
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.middleName, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(m => m.middleName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(m => m.middleName, "", new { @class = "text-danger" })
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.lastName, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(m => m.lastName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(m => m.lastName, "", new { @class = "text-danger" })
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("user type ", new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            <select name="userType" class="form-control">
+                                <option value="1">supervisor</option>
+                                <option value="2">trainer</option>
+                                <option value="3">trainee </option>
+
+                            </select>
+                            @Html.ValidationMessageFor(m => m.lastName, "", new { @class = "text-danger" })
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.phoneNumber, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(m => m.phoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(m => m.phoneNumber, "", new { @class = "text-danger" })
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <ul>
+                        <li>password should be minmum 8 letter</li>
+                        <li>at least one Upper Letter</li>
+                        <li>at least one Lower Letter</li>
+                        <li>at least one digit</li>
+                    </ul>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 text-center col-md-10">
+                            <input type="submit" class="btn btn-light" value="Register" />
+                        </div>
+                    </div>
+                }
+            </div>
+            
+                <div class="col-md-2"></div>
+                </div>
+
+                    @section Scripts {
+                        @Scripts.Render("~/bundles/jqueryval")
+                    }

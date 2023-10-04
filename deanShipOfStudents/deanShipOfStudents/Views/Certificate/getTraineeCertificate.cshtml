@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "getTraineeCertificate";
+}
+
+
+@if (ViewBag.traineeActivity != null)
+{
+    var traineeActivity = ViewBag.traineeActivity as traineActivityModel;
+
+<div class="row">
+    <div class="col-md-4 text-start">
+        <p>Kingdom of saudi arabia</p>
+        <p>Ministry of Education</p>
+        <p>King Abdulaziz University</p>
+    </div>
+    <div class="col-md-4"></div>
+    <div class="col-md-4  text-end">
+        <p>المملكة العربية السعودية</p>
+        <p>وزارة التعليم</p>
+        <p>جامعة الملك عبدالعزيز</p>
+    </div>
+    <div class="col-md-12">
+        <h2 class="text-center">Certificate</h2>
+    </div>
+    <div class="col-md-6">
+        <p>this is a certificate for mr @traineeActivity.TraineeName with University Code @traineeActivity.UniverstyId in activity @traineeActivity.ActivityName that he passed activity with attendance @traineeActivity.AvgAttendance</p>
+    </div>
+    <div class="col-md-6">@traineeActivity.TraineeName تشهد عمادة جامعة الملك عبدالعزيز بأن الطالب </div>
+</div>
+}

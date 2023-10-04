@@ -1,0 +1,95 @@
+﻿@model IEnumerable<deanShipOfStudents.Models.Activity>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Activities</h2>
+@if (!User.IsInRole("trainee"))
+{
+<p>
+    @Html.ActionLink("Create", "Create", null, new { @class = "btn btn-light" })
+</p>
+
+}
+@if (Model != null)
+{
+    <input type="text" placeholder=" search by activity name , location or type " id="inputSearch" class="form-control" />
+
+    <table class="table" id="tableSearch">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ActivityName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsClosed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsAssigned)
+            </th>
+            @if (!User.IsInRole("trainee"))
+            {
+                <th></th>
+            }
+            </tr>
+
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ActivityName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Location)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsClosed)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsAssigned)
+        </td>
+        @if (!User.IsInRole("trainee"))
+        {
+            <td>
+
+
+                @Html.ActionLink("Edit", "Edit", new { id = item.ActivityId }, new { @class = "btn btn-light" }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ActivityId }, new { @class = "btn btn-light" }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ActivityId }, new { @class = "btn btn-light" })
+               
+                @if (User.IsInRole("SuperVisor"))
+                {
+                    <span>|</span>
+                    <a href="~/Attatchments/index?activityId=@item.ActivityId&type=@deanShipOfStudents.Models.Attatchment.FileType.attendance" class="btn btn-light">Attendance</a>
+                    if (item.IsClosed)
+                    {
+                        <span>|</span>
+                        <a href="~/Certificate/NotifiTaineeAboutCertificate?activityId=@item.ActivityId" class="btn btn-light">Certificates</a>
+
+                    }
+                }
+
+            </td>
+        }
+        </tr>
+        }
+
+    </table>
+
+}
+else
+{
+    <p> No Data!</p>
+}
+@section Scripts {
+    @Scripts.Render("~/scripts/myJs.js")
+}

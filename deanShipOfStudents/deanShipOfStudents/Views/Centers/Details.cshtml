@@ -1,0 +1,51 @@
+﻿@model deanShipOfStudents.Models.Center
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Center</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CenterName)
+        </dt>
+
+        <dd class="form-control">
+            @Html.DisplayFor(model => model.CenterName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd class="form-control">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Objective)
+        </dt>
+
+        <dd class="form-control">
+            @Html.DisplayFor(model => model.Objective)
+        </dd>
+        <dt>
+            supervisor name
+        </dt>
+
+        <dd class="form-control">
+            @Html.DisplayFor(model => model.Supervisor.firstName)
+        </dd>
+
+    </dl>
+</div>
+<p class="text-center">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CenterId },new {@class = "btn btn-light" }) |
+    @Html.ActionLink("Back to List", "Index" , null , new { @class = "btn btn-light" })
+</p>

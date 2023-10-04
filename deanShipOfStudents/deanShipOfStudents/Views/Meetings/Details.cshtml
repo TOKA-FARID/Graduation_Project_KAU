@@ -1,0 +1,42 @@
+﻿@model deanShipOfStudents.Models.Meeting
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Meeting</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Activity name
+        </dt>
+
+        <dd class="form-control">
+            @Html.DisplayFor(model => model.Activity.ActivityName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateOfActivity)
+        </dt>
+
+        <dd class="form-control">
+            @Html.DisplayFor(model => model.DateOfActivity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TimeOfActivity)
+        </dt>
+
+        <dd class="form-control">
+            @Html.DisplayFor(model => model.TimeOfActivity)
+        </dd>
+
+    </dl>
+</div>
+<p class="text-center mt-2">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id },new {@class = "btn btn-light" }) |
+    @Html.ActionLink("Back to List", "Index",null, new { @class = "btn btn-light" })
+</p>
