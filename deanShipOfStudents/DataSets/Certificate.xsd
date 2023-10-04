@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Certificate" targetNamespace="http://tempuri.org/Certificate.xsd" xmlns:mstns="http://tempuri.org/Certificate.xsd" xmlns="http://tempuri.org/Certificate.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Certificate" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="Certificate" msprop:Generator_UserDSName="Certificate">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="CertificateView" msprop:Generator_TableClassName="CertificateViewDataTable" msprop:Generator_TableVarName="tableCertificateView" msprop:Generator_TablePropName="CertificateView" msprop:Generator_RowDeletingName="CertificateViewRowDeleting" msprop:Generator_RowChangingName="CertificateViewRowChanging" msprop:Generator_RowEvHandlerName="CertificateViewRowChangeEventHandler" msprop:Generator_RowDeletedName="CertificateViewRowDeleted" msprop:Generator_UserTableName="CertificateView" msprop:Generator_RowChangedName="CertificateViewRowChanged" msprop:Generator_RowEvArgName="CertificateViewRowChangeEvent" msprop:Generator_RowClassName="CertificateViewRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ActivityName" msprop:Generator_ColumnVarNameInTable="columnActivityName" msprop:Generator_ColumnPropNameInRow="ActivityName" msprop:Generator_ColumnPropNameInTable="ActivityNameColumn" msprop:Generator_UserColumnName="ActivityName" type="xs:string" minOccurs="0" />
+              <xs:element name="Location" msprop:Generator_ColumnVarNameInTable="columnLocation" msprop:Generator_ColumnPropNameInRow="Location" msprop:Generator_ColumnPropNameInTable="LocationColumn" msprop:Generator_UserColumnName="Location" type="xs:string" minOccurs="0" />
+              <xs:element name="AvgAttendance" msprop:Generator_ColumnVarNameInTable="columnAvgAttendance" msprop:Generator_ColumnPropNameInRow="AvgAttendance" msprop:Generator_ColumnPropNameInTable="AvgAttendanceColumn" msprop:Generator_UserColumnName="AvgAttendance" type="xs:string" minOccurs="0" />
+              <xs:element name="AvgEvaluation" msprop:Generator_ColumnVarNameInTable="columnAvgEvaluation" msprop:Generator_ColumnPropNameInRow="AvgEvaluation" msprop:Generator_ColumnPropNameInTable="AvgEvaluationColumn" msprop:Generator_UserColumnName="AvgEvaluation" type="xs:string" minOccurs="0" />
+              <xs:element name="TraineeName" msprop:Generator_ColumnVarNameInTable="columnTraineeName" msprop:Generator_ColumnPropNameInRow="TraineeName" msprop:Generator_ColumnPropNameInTable="TraineeNameColumn" msprop:Generator_UserColumnName="TraineeName" type="xs:string" minOccurs="0" />
+              <xs:element name="UniverstyId" msprop:Generator_ColumnVarNameInTable="columnUniverstyId" msprop:Generator_ColumnPropNameInRow="UniverstyId" msprop:Generator_ColumnPropNameInTable="UniverstyIdColumn" msprop:Generator_UserColumnName="UniverstyId" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
